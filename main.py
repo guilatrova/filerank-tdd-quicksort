@@ -67,5 +67,10 @@ def process_input(rawinput):
     return rawinput.split()
 
 
+def generate_output(filename, value):
+    onlyname = filename[filename.rfind("/") + 1 :]
+    return f"{onlyname} - {value:.2f}%"
+
+
 if __name__ == "__main__":
     pass

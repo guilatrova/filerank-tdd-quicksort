@@ -82,7 +82,7 @@ def test_process_input():
 def test_generate_output():
     inputs = [
         {"filename": "long/long/path/file1.txt", "value": 100},
-        {"filename": "long/long/path/file2.txt", "value": 15.6},
+        {"filename": "long/long/path/file2.txt", "value": 15.06},
         {"filename": "long/long/path/file3.txt", "value": 73.32},
         {"filename": "long/long/path/file4.txt", "value": 0},
     ]
