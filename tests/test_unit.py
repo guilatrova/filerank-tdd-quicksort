@@ -1,6 +1,6 @@
 import pytest
 
-from main import process_input, rank_files, trim_search_words
+from main import generate_output, process_input, rank_files, trim_search_words
 
 
 @pytest.fixture()
@@ -77,6 +77,32 @@ def test_process_input():
     result = process_input(userinput)
 
     assert result == expected
+
+
+def test_generate_output():
+    inputs = [
+        {"filename": "long/long/path/file1.txt", "value": 100},
+        {"filename": "long/long/path/file2.txt", "value": 15.6},
+        {"filename": "long/long/path/file3.txt", "value": 73.32},
+        {"filename": "long/long/path/file4.txt", "value": 0},
+    ]
+
+    assert (
+        generate_output(inputs[0]["filename"], inputs[0]["value"])
+        == "file1.txt - 100.00%"
+    )
+    assert (
+        generate_output(inputs[1]["filename"], inputs[1]["value"])
+        == "file2.txt - 15.06%"
+    )
+    assert (
+        generate_output(inputs[2]["filename"], inputs[2]["value"])
+        == "file3.txt - 73.32%"
+    )
+    assert (
+        generate_output(inputs[3]["filename"], inputs[3]["value"])
+        == "file4.txt - 0.00%"
+    )
 
 
 # TODO: We should be sure we're reading .txt files
