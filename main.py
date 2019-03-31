@@ -40,7 +40,9 @@ def _calculate_rank_result(words, content):
         end_word = f" {word}"
         middle_word = f" {word} "
 
-        if middle_word in content:
+        if word == content:
+            found += 1
+        elif middle_word in content:
             found += 1
         elif content.startswith(begin_word) or content.endswith(end_word):
             found += 1
