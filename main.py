@@ -63,5 +63,9 @@ def rank_files(words, files):
     return results
 
 
+def process_input(rawinput):
+    return rawinput.split()
+
+
 if __name__ == "__main__":
     pass
