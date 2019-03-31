@@ -1,3 +1,4 @@
+import sys
 from os import listdir
 from os.path import isfile
 
@@ -74,4 +75,21 @@ def generate_output(filename, value):
 
 
 if __name__ == "__main__":
-    pass
+    """
+    Entrypoint of application.
+    We consider all inputs will be sane, so
+    1. It will be a valid path
+    2. This path will contain only text files
+    3. All strings passed down will be valid for the search (no empty input)
+    """
+    directory = sys.argv[1]
+    files = read_files(directory)
+    print(f"{len(files)} files read in directory {directory}")
+
+    rawinput = input("What would you like to search for: ")
+    words = trim_search_words(process_input(rawinput))
+
+    results = rank_files(words, files)
+    print("\n=== Results ===")
+    for filename, value in results.items():
+        print(generate_output(filename, value))
