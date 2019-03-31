@@ -21,7 +21,7 @@ def trim_search_words(words):
 def rank_files(words, files):
     results = {}
     for file in files:
-        results[file] = 100
+        results[file] = 100 if words[0] in files[file] else 0
 
     return results
 
