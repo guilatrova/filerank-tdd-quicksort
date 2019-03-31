@@ -14,5 +14,9 @@ def read_files(path):
     return contents
 
 
+def trim_search_words(words):
+    return set(words)
+
+
 if __name__ == "__main__":
     pass
