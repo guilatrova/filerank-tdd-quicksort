@@ -2,14 +2,23 @@ from os import listdir
 from os.path import isfile
 
 
+def _read_file_content(filename):
+    with open(filename, "r") as content:
+        return content.read().replace("\n", "")
+
+
 def read_files(path):
+    """
+    Reads all files inside a given directory path, then
+    filters folders and returns a dict where key is the filename
+    and value is the actual contents
+    """
     filenames = listdir(path)
     contents = {}
     for filename in filenames:
         fullpath = f"{path}/{filename}"
         if isfile(fullpath):
-            with open(fullpath, "r") as content:
-                contents[fullpath] = content.read().replace("\n", "")
+            contents[fullpath] = _read_file_content(fullpath)
 
     return contents
 
