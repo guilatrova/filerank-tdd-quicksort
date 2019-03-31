@@ -1,6 +1,12 @@
 import pytest
 
-from main import generate_output, process_input, rank_files, trim_search_words
+from main import (
+    generate_output,
+    process_input,
+    process_rank,
+    rank_files,
+    trim_search_words,
+)
 
 
 @pytest.fixture()
@@ -103,3 +109,19 @@ def test_generate_output():
         generate_output(inputs[3]["filename"], inputs[3]["value"])
         == "file4.txt - 0.00%"
     )
+
+
+def test_sort_results_by_rank():
+    inputs = [
+        {"file1.txt": 10},
+        {"file2.txt": 30},
+        {"file3.txt": 30.05},
+        {"file4.txt": 80},
+    ]
+    expected_order = [80, 30.05, 30, 10]
+
+    results = process_rank(inputs)
+
+    for i in range(len(inputs)):
+        file = f"file{i + 1}.txt"
+        assert results[file] == expected_order[i]
