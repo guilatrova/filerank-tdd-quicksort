@@ -13,6 +13,10 @@ def mocked_files(mocker):
     }
 
 
+def get_filename(index):
+    return f"/home/mocked-folder/file{index}.txt"
+
+
 def test_trim_search_words():
     trimmed = trim_search_words(["to", "be", "or", "not", "to", "be"])
     assert len(trimmed) == 4
@@ -26,3 +30,13 @@ def test_rank_files_100(mocked_files):
     for file in mocked_files.keys():
         assert file in results
         assert results[file] == 100
+
+
+def test_rank_files_100_0(mocked_files):
+    words = ["file"]
+
+    results = rank_files(words, mocked_files)
+    assert results[get_filename(1)] == 100
+    assert results[get_filename(2)] == 100
+    assert results[get_filename(3)] == 0
+    assert results[get_filename(4)] == 0
