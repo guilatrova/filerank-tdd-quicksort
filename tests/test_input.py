@@ -1,22 +1,10 @@
 import pytest
 
-from main import read_files
-
 
 @pytest.fixture()
 def files():
-    return [
-        "/home/mocked-folder/file1.txt",
-        "/home/mocked-folder/file2.txt",
-        "/home/mocked-folder/file3.txt",
-    ]
-
-
-def test_list_files(files, mocker):
-    mocker.patch("main.listdir", return_value=files)
-
-    filesread = read_files("/home/mocked-folder")
-
-    assert len(filesread) == 3
-    for fileread in filesread:
-        assert fileread.startswith("/home/mocked-folder")
+    return {
+        "/home/mocked-folder/file1.txt": "content of file 1",
+        "/home/mocked-folder/file2.txt": "content of file 2",
+        "/home/mocked-folder/file3.txt": "yet another content",
+    }

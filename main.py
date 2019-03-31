@@ -1,8 +1,16 @@
 from os import listdir
+from os.path import isfile
 
 
 def read_files(path):
-    contents = listdir(path)
+    filenames = listdir(path)
+    contents = {}
+    for filename in filenames:
+        fullpath = f"{path}/{filename}"
+        if isfile(fullpath):
+            with open(fullpath, "r") as content:
+                contents[fullpath] = content.read().replace("\n", "")
+
     return contents
 
 
