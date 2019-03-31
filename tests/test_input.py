@@ -5,11 +5,11 @@ from main import read_files
 
 @pytest.fixture()
 def files():
-    return {
-        "/home/mocked-folder/file1.txt": "content of file 1",
-        "/home/mocked-folder/file2.txt": "content of file 2",
-        "/home/mocked-folder/file3.txt": "content of yet another file",
-    }
+    return [
+        "/home/mocked-folder/file1.txt",
+        "/home/mocked-folder/file2.txt",
+        "/home/mocked-folder/file3.txt",
+    ]
 
 
 def test_list_files(files, mocker):
@@ -18,6 +18,5 @@ def test_list_files(files, mocker):
     filesread = read_files("/home/mocked-folder")
 
     assert len(filesread) == 3
-    for fileread in filesread.items():
-        assert fileread[0].startswith("/home/mocked-folder")
-        assert "content" in fileread[1]
+    for fileread in filesread:
+        assert fileread.startswith("/home/mocked-folder")
