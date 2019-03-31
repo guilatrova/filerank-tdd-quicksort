@@ -18,20 +18,28 @@ def trim_search_words(words):
     return set(words)
 
 
+def _calculate_rank_result(words, content):
+    """
+    Receives expected words to look for and calculates a proper rank
+    based on how many words are actually found
+    """
+    found = 0
+    for word in words:
+        if word in content:
+            found += 1
+
+    return _calculate_result(found, len(words))
+
+
 def _calculate_result(found, total):
+    """ Calculates real result based on found words vs total words """
     return (found * 100) / total
 
 
 def rank_files(words, files):
     results = {}
-
     for filename in files:
-        found = 0
-        for word in words:
-            if word in files[filename]:
-                found += 1
-
-        results[filename] = _calculate_result(found, len(words))
+        results[filename] = _calculate_rank_result(words, files[filename])
 
     return results
 
