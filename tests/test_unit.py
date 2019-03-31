@@ -1,6 +1,6 @@
 import pytest
 
-from main import rank_files, trim_search_words
+from main import process_input, rank_files, trim_search_words
 
 
 @pytest.fixture()
@@ -68,6 +68,15 @@ def test_rank_counts_100_when_content_is_word():
     results = rank_files(words, {"file1.txt": "on"})
 
     assert results["file1.txt"] == 100
+
+
+def test_process_input():
+    userinput = "my list of words"
+    expected = ["my", "list", "of", "words"]
+
+    result = process_input(userinput)
+
+    assert result == expected
 
 
 # TODO: We should be sure we're reading .txt files
