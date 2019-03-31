@@ -12,7 +12,9 @@ def files():
     }
 
 
-def test_read_files(files):
+def test_list_files(files, mocker):
+    mocker.patch("main.listdir", return_value=files)
+
     filesread = read_files("/home/mocked-folder")
 
     assert len(filesread) == 3
