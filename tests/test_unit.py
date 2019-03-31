@@ -22,6 +22,6 @@ def test_rank_files_100(mocked_files):
     results = rank_files(words, mocked_files)
 
     assert len(results) == 3
-    for file in mocked_files:
+    for file in mocked_files.keys():
         assert file in results
-        assert 100 in results[file]
+        assert results[file] == 100

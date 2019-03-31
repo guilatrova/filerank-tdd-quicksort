@@ -18,5 +18,13 @@ def trim_search_words(words):
     return set(words)
 
 
+def rank_files(words, files):
+    results = {}
+    for file in files:
+        results[file] = 100
+
+    return results
+
+
 if __name__ == "__main__":
     pass
