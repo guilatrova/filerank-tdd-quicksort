@@ -62,4 +62,12 @@ def test_rank_counts_the_whole_word(mocked_files):
     assert results[get_filename(4)] == 0
 
 
-# TODO: The whole content may be the word itself
+def test_rank_counts_100_when_content_is_word():
+    words = ["on"]
+
+    results = rank_files(words, {"file1.txt": "on"})
+
+    assert results["file1.txt"] == 100
+
+
+# TODO: We should be sure we're reading .txt files
