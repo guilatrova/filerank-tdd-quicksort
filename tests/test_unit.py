@@ -40,3 +40,13 @@ def test_rank_files_100_0(mocked_files):
     assert results[get_filename(2)] == 100
     assert results[get_filename(3)] == 0
     assert results[get_filename(4)] == 0
+
+
+def test_rank_files_multiple_words_100_50(mocked_files):
+    words = ["content", "file"]
+
+    results = rank_files(words, mocked_files)
+    assert results[get_filename(1)] == 100
+    assert results[get_filename(2)] == 100
+    assert results[get_filename(3)] == 50
+    assert results[get_filename(4)] == 50
