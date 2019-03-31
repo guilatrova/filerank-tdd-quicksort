@@ -103,6 +103,3 @@ def test_generate_output():
         generate_output(inputs[3]["filename"], inputs[3]["value"])
         == "file4.txt - 0.00%"
     )
-
-
-# TODO: We should be sure we're reading .txt files

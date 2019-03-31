@@ -68,7 +68,8 @@ def process_input(rawinput):
 
 
 def generate_output(filename, value):
-    onlyname = filename[filename.rfind("/") + 1 :]
+    stripfrom = filename.rfind("/") + 1
+    onlyname = filename[stripfrom:]
     return f"{onlyname} - {value:.2f}%"
 
 
