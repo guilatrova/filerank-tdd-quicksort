@@ -18,5 +18,6 @@ def test_list_files(files, mocker):
     filesread = read_files("/home/mocked-folder")
 
     assert len(filesread) == 3
-    for fileread in filesread:
-        assert fileread.startswith("/home/mocked-folder")
+    for fileread in filesread.items():
+        assert fileread[0].startswith("/home/mocked-folder")
+        assert "content" in fileread[1]
