@@ -14,8 +14,7 @@ def mocked_files(mocker):
     mocker.patch("main.read_files", return_value=files)
 
 
-def test_trim_search_words_outputs_set():
+def test_trim_search_words():
     trimmed = trim_search_words(["to", "be", "or", "not", "to", "be"])
 
     assert len(trimmed) == 4
-    assert isinstance(trimmed, set)
