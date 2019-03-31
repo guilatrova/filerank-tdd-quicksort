@@ -60,3 +60,6 @@ def test_rank_counts_the_whole_word(mocked_files):
     assert results[get_filename(2)] == 0
     assert results[get_filename(3)] == 0
     assert results[get_filename(4)] == 0
+
+
+# TODO: The whole content may be the word itself

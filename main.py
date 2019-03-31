@@ -34,7 +34,9 @@ def _calculate_rank_result(words, content):
     """
     found = 0
     for word in words:
-        if word in content:
+        if f" {word} " in content:
+            found += 1
+        elif content.startswith(f"{word} ") or content.endswith(f" {word}"):
             found += 1
 
     return _calculate_result(found, len(words))
