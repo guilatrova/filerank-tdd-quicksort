@@ -34,9 +34,15 @@ def _calculate_rank_result(words, content):
     """
     found = 0
     for word in words:
-        if f" {word} " in content:
+        # NOTE: We could use regex, but since we might avoid libs
+        # we're going to filter stuff ourselves
+        begin_word = f"{word} "
+        end_word = f" {word}"
+        middle_word = f" {word} "
+
+        if middle_word in content:
             found += 1
-        elif content.startswith(f"{word} ") or content.endswith(f" {word}"):
+        elif content.startswith(begin_word) or content.endswith(end_word):
             found += 1
 
     return _calculate_result(found, len(words))
