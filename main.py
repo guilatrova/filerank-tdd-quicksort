@@ -110,6 +110,8 @@ if __name__ == "__main__":
     words = trim_search_words(process_input(rawinput))
 
     results = rank_files(words, files)
+    rank = process_rank(results)
+
     print("\n=== Results ===")
-    for filename, value in results.items():
-        print(generate_output(filename, value))
+    for entry in rank:
+        print(generate_output(entry))
