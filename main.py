@@ -87,8 +87,11 @@ def process_input(rawinput):
 
 def generate_output(entry):
     stripfrom = entry["filename"].rfind("/") + 1
-    onlyname = entry["filename"][stripfrom:]
-    return f"{onlyname} - {entry['value']:.2f}%"
+
+    filename = entry["filename"][stripfrom:]
+    value = entry["value"]
+
+    return f"{filename} - {value:.2f}%"
 
 
 if __name__ == "__main__":
