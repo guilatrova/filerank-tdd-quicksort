@@ -66,17 +66,38 @@ def rank_files(words, files):
     return results
 
 
+def _quicksort_rank(array):
+    """
+    Implements quick sort algorithm to sort the rank entries
+    """
+    beggining = []
+    middle = []
+    ending = []
+
+    if len(array) > 1:
+        pivot = array[0]
+
+        for entry in array:
+            if entry["value"] > pivot["value"]:
+                beggining.append(entry)
+            elif entry["value"] < pivot["value"]:
+                ending.append(entry)
+            else:
+                middle.append(entry)
+
+        return _quicksort_rank(beggining) + middle + _quicksort_rank(ending)
+
+    # We're fine, this part of array was finished
+    return array
+
+
 def process_rank(results):
     # convert to list
     results = [{"filename": key, "value": value} for key, value in results.items()]
     length = len(results)
     finallength = MAX_RANK_LENGTH if length > MAX_RANK_LENGTH else length
 
-    # starting with bubble sort
-    for i in range(length):
-        for j in range(length):
-            if results[i]["value"] > results[j]["value"]:
-                results[i], results[j] = results[j], results[i]
+    results = _quicksort_rank(results)
 
     return results[:finallength]
 
