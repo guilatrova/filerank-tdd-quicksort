@@ -2,6 +2,8 @@ import sys
 from os import listdir
 from os.path import isfile
 
+MAX_RANK_LENGTH = 10
+
 
 def _read_file_content(filename):
     with open(filename, "r") as content:
@@ -68,14 +70,13 @@ def process_rank(results):
     # convert to list
     results = [{"filename": key, "value": value} for key, value in results.items()]
     length = len(results)
+    finallength = MAX_RANK_LENGTH if length > MAX_RANK_LENGTH else length
 
     # starting with bubble sort
     for i in range(length):
         for j in range(length):
             if results[i]["value"] > results[j]["value"]:
                 results[i], results[j] = results[j], results[i]
-
-    finallength = 10 if length > 10 else length
 
     return results[:finallength]
 
