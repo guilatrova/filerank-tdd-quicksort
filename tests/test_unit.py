@@ -93,22 +93,10 @@ def test_generate_output():
         {"filename": "long/long/path/file4.txt", "value": 0},
     ]
 
-    assert (
-        generate_output(inputs[0]["filename"], inputs[0]["value"])
-        == "file1.txt - 100.00%"
-    )
-    assert (
-        generate_output(inputs[1]["filename"], inputs[1]["value"])
-        == "file2.txt - 15.06%"
-    )
-    assert (
-        generate_output(inputs[2]["filename"], inputs[2]["value"])
-        == "file3.txt - 73.32%"
-    )
-    assert (
-        generate_output(inputs[3]["filename"], inputs[3]["value"])
-        == "file4.txt - 0.00%"
-    )
+    assert generate_output(inputs[0]) == "file1.txt - 100.00%"
+    assert generate_output(inputs[1]) == "file2.txt - 15.06%"
+    assert generate_output(inputs[2]) == "file3.txt - 73.32%"
+    assert generate_output(inputs[3]) == "file4.txt - 0.00%"
 
 
 def test_sort_results_by_rank():
