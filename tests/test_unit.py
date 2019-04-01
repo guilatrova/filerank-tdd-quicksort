@@ -118,5 +118,31 @@ def test_sort_results_by_rank():
 
     results = process_rank(inputs)
 
-    for i in range(len(results)):
+    for i in range(len(expected_order)):
+        assert results[i]["value"] == expected_order[i]
+
+
+def test_sort_results_returns_max_top_10():
+    inputs = {
+        "file2.txt": 30,  # seventy
+        "file1.txt": 2.75,
+        "file3.txt": 30.05,  # sixty
+        "file4.txt": 80,  # fifth
+        "file6.txt": 96.2,  # fourth
+        "file7.txt": 99,  # second
+        "file9.txt": 22,  # eighty
+        "file10.txt": 8.14,  # ninety
+        "file11.txt": 3.99,  # tenth
+        "file8.txt": 100,  # first
+        "file12.txt": 3,
+        "file13.txt": 1,
+        "file5.txt": 97.1,  # third
+    }
+
+    expected_order = [100, 99, 97.1, 96.2, 80, 30.05, 30, 22, 8.14, 3.99]
+
+    results = process_rank(inputs)
+
+    assert len(expected_order) == len(results)
+    for i in range(len(expected_order)):
         assert results[i]["value"] == expected_order[i]
