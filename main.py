@@ -75,7 +75,9 @@ def process_rank(results):
             if results[i]["value"] > results[j]["value"]:
                 results[i], results[j] = results[j], results[i]
 
-    return results
+    finallength = 10 if length > 10 else length
+
+    return results[:finallength]
 
 
 def process_input(rawinput):
