@@ -112,16 +112,11 @@ def test_generate_output():
 
 
 def test_sort_results_by_rank():
-    inputs = [
-        {"file1.txt": 10},
-        {"file2.txt": 30},
-        {"file3.txt": 30.05},
-        {"file4.txt": 80},
-    ]
+    inputs = {"file1.txt": 10, "file2.txt": 30, "file3.txt": 30.05, "file4.txt": 80}
+
     expected_order = [80, 30.05, 30, 10]
 
     results = process_rank(inputs)
 
-    for i in range(len(inputs)):
-        file = f"file{i + 1}.txt"
-        assert results[file] == expected_order[i]
+    for i in range(len(results)):
+        assert results[i]["value"] == expected_order[i]

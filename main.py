@@ -64,6 +64,20 @@ def rank_files(words, files):
     return results
 
 
+def process_rank(results):
+    # convert to list
+    results = [{"filename": key, "value": value} for key, value in results.items()]
+    length = len(results)
+
+    # starting with bubble sort
+    for i in range(length):
+        for j in range(length):
+            if results[i]["value"] > results[j]["value"]:
+                results[i], results[j] = results[j], results[i]
+
+    return results
+
+
 def process_input(rawinput):
     return rawinput.split()
 
