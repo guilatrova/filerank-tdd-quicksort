@@ -85,10 +85,10 @@ def process_input(rawinput):
     return rawinput.split()
 
 
-def generate_output(filename, value):
-    stripfrom = filename.rfind("/") + 1
-    onlyname = filename[stripfrom:]
-    return f"{onlyname} - {value:.2f}%"
+def generate_output(entry):
+    stripfrom = entry["filename"].rfind("/") + 1
+    onlyname = entry["filename"][stripfrom:]
+    return f"{onlyname} - {entry['value']:.2f}%"
 
 
 if __name__ == "__main__":
